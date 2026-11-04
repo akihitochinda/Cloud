@@ -1,0 +1,18 @@
+[Unit]
+Description=CS6650 RabbitMQ Consumer
+After=network.target
+
+[Service]
+User=ec2-user
+WorkingDirectory=/home/ec2-user/consumer
+
+ExecStart=/usr/bin/java -jar /home/ec2-user/consumer/skitrak-consumer.jar
+
+Restart=always
+RestartSec=5
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
