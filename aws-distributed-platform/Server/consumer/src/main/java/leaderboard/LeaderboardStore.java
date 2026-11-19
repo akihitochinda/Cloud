@@ -41,9 +41,7 @@ public class LeaderboardStore {
         .collect(Collectors.toList());
   }
 
-  public static ConcurrentHashMap<String, Long>
-
-  getLeaderboard(String resortID, String dayID) {
+  public static ConcurrentHashMap<String, Long> getLeaderboard(String resortID, String dayID) {
     String key = resortID + ":" + dayID;
     return resortLeaderboards.getOrDefault(key, new ConcurrentHashMap<>());
   }

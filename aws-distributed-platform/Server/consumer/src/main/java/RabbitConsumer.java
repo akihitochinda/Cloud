@@ -62,7 +62,7 @@ public class RabbitConsumer {
           LeaderboardStore.update(event, total);
 
           long publishTime = System.currentTimeMillis();
-          long lastPublishTime = lastPublishTimes.getOrDefault(event.getResortID(), 0L);
+          long lastPublishTime = lastPublishTimes.getOrDefault(event.getResortID() + ":" + event.getDayID(), 0L);
 
           if (publishTime - lastPublishTime > 1000) { // 1 update/sec
             var top5 = LeaderboardStore.getTop5(event.getResortID(), event.getDayID());
@@ -92,7 +92,7 @@ public class RabbitConsumer {
             payload.put("top", top);
 
             String leaderboardJson = gson.toJson(payload);
-            String previousLeaderboardJson = previousLeaderboards.get(event.getResortID());
+            String previousLeaderboardJson = previousLeaderboards.get(event.getResortID() + ":" + event.getDayID());
 
             if (!leaderboardJson.equals(previousLeaderboardJson)) { // if JSON updated
               // Publish via leaderboard fanout
@@ -102,9 +102,9 @@ public class RabbitConsumer {
                   "",
                   null,
                   leaderboardJson.getBytes());
-              previousLeaderboards.put(event.getResortID(), leaderboardJson);
+              previousLeaderboards.put(event.getResortID() + ":" + event.getDayID(), leaderboardJson);
             }
-            lastPublishTimes.put(event.getResortID(), publishTime);
+            lastPublishTimes.put(event.getResortID() + ":" + event.getDayID(), publishTime);
           }
 
           swipesProcessed.incrementAndGet(); // AtomicLong swipesProcessed;

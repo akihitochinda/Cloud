@@ -27,7 +27,7 @@ sudo rm -rf /opt/tomcat9/webapps/skitrak-server*
 
 sudo cp /tmp/skitrak-server-1.0-SNAPSHOT.war /opt/tomcat9/webapps/skitrak-server.war
 
-sudo chown tomcat:tomcat /opt/tomcat9/webapps/skitrak-server.war
+# sudo chown tomcat:tomcat /opt/tomcat9/webapps/skitrak-server.war
 
 /opt/tomcat9/bin/shutdown.sh
 
