@@ -1,8 +1,8 @@
 ### Run instructions for Performance Analysis (Run the client (ingest + subscribe) against the new pipeline.)
 
-#### JAR Deployment in IntelliJ (From Assignment2\consumer Project)
+#### JAR Deployment in IntelliJ (From Server\consumer Project)
 
-1. Download `Assignment2` from Git Repository URL
+1. Download `Server` from Git Repository URL
 2. Change factory.setHost("172.31.x.x"); RabbitMQ EC2 Private IPv4 address with YOUR_EC2_RABBITMQ_PRIVATE_IP in RabbitConsumer class
 3. Deployment
    1. Copy JAR deployment script `deploy-consumer.sh` in deployment folder to `consumer` Project
@@ -17,7 +17,7 @@
    2. `sudo nano /etc/systemd/system/consumer.service` (Edit & Write & Save)
    3. `sudo systemctl daemon-reload`
 
-#### WAR Deployment in IntelliJ (From Assignment2\server-v2 Project)
+#### WAR Deployment in IntelliJ (From Server\server-v2 Project)
 
 1. Change factory.setHost("172.31.x.x"); RabbitMQ EC2 Private IPv4 address with YOUR_EC2_RABBITMQ_PRIVATE_IP in RabbitMQManager class
 2. Deployment
@@ -30,7 +30,7 @@
 
 #### Performance Analysis
 
-1. Start RabbitMQ (From Assignment2\server-v2 Project)
+1. Start RabbitMQ (From Server\server-v2 Project)
    1. Start RabbitMQ EC2 instance
    2. `ssh -i your-key.pem ec2-user@YOUR_EC2_RABBITMQ_IP`
    3. `sudo docker start rabbitmq` (Refer to rabbitmq-setup.md in deployment folder for setups)
@@ -55,7 +55,7 @@
    **Expected Result:** Monitoring script starts on RabbitMQ EC2
       - (Optional) `tail -f system-report.csv` (You should see new rows with new timestamps increasing every 5 seconds)
 
-2. Start Consumer (From Assignment2\consumer Project)
+2. Start Consumer (From Server\consumer Project)
    1. Start Consumer EC2 instance
    2. `ssh -i your-key.pem ec2-user@YOUR_EC2_CONSUMER_IP`
    3. (Optional) Restart service to refresh the consumer state (every time you run load test)
@@ -72,7 +72,7 @@
    **Expected Result:** Monitoring script starts on Consumer EC2
       - (Optional) `tail -f system-report.csv` (You should see new rows with new timestamps increasing every 5 seconds)
 
-3. Start Ingest Server(s) (From Assignment2\server-v2 Project)
+3. Start Ingest Server(s) (From Server\server-v2 Project)
    1. Start Ingest EC2 instance(s)
    2. `ssh -i your-key.pem ec2-user@YOUR_EC2_INGEST_IP`
    3. (Optional) Restart service to reconnect to RabbitMQ (if already started)
@@ -104,11 +104,11 @@
       - Start Performance Analysis (printed on completion)
       - Start Statistical Analysis (printed on completion)
 
-   Expected Result: Your rabbitmq-report.csv report stores in Assignment2\monitoring folder and system-report.csv in YOUR_EC2_IP/tmp folder
+   Expected Result: Your rabbitmq-report.csv report stores in Server\monitoring folder and system-report.csv in YOUR_EC2_IP/tmp folder
 
    4. Stop monitoring
       - `pkill -f system-monitor.sh` (From EC2)
       - ctrl + c queue-monitor.py (From your local machine)
 
 5. Export the system-report.csv from EC2 to local folder (tmp folder content will be deleted once restart EC2)
-   1. `scp -i your-key.pem ec2-user@YOUR_EC2_IP:/tmp/system-report.csv ./Assignment2/monitoring/` (From your local machine)
+   1. `scp -i your-key.pem ec2-user@YOUR_EC2_IP:/tmp/system-report.csv ./Server/monitoring/` (From your local machine)

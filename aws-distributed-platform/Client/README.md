@@ -2,7 +2,7 @@
 
 #### Local Tomcat
 
-1. Download `Assignment1` from Git Repository URL
+1. Download `Client` from Git Repository URL
 2. Set environment variable `CATALINA_HOME` & `JAVA_HOME`
    1. `set CATALINA_HOME=C:\Program Files\Apache Software Foundation\Tomcat 9.0`
    2. `set JAVA_HOME=C:\Users\%USERNAME%\.jdks\corretto-11.0.32.1`
@@ -20,7 +20,7 @@ open http://localhost:8080
 ```
 **Expected Result:** Tomcat welcome page appears.
 
-#### Configure Tomcat in IntelliJ (From Assignment1\server Project)
+#### Configure Tomcat in IntelliJ (From Client\server Project)
 
 1. Clean Previous Deployments
 
@@ -34,7 +34,7 @@ sudo rm -rf /opt/tomcat9/work/Catalina/localhost/skitrak-server*
    1. **Run** → **Edit Configurations**
    2. Click **+** → **Tomcat Server** → **Local**
    3. **Configuration:**
-      - **Name:** `Tomcat 9 - Assignment 1`
+      - **Name:** `Tomcat 9 - Client`
       - **Tomcat Home:** `/Library/Tomcat` (or your Windows path)
       - **JRE:** Java 11
       - **HTTP Port:** 8080
@@ -53,7 +53,7 @@ sudo rm -rf /opt/tomcat9/work/Catalina/localhost/skitrak-server*
 
 Expected Result: Your index.jsp page displays with current time.
 
-#### Performance Analysis (From Assignment1\client-part2 Project)
+#### Performance Analysis (From Client\client-part2 Project)
 
 1. Add Application Configuration
    1. **Run** → **Edit Configurations**
@@ -69,4 +69,4 @@ Expected Result: Your index.jsp page displays with current time.
    - Start Performance Analysis (printed on completion)
    - Start Statistical Analysis (printed and in report)
 
-Expected Result: Your swipe_metrics.csv / throughput.csv reports store in Assignment1\results folder
+Expected Result: Your swipe_metrics.csv / throughput.csv reports store in Client\results folder
