@@ -18,7 +18,7 @@ import leaderboard.LeaderboardStore;
 import model.SwipeEvent;
 
 public class RabbitConsumer {
-  private static final int NUM_CONSUMERS = 10;
+  private static final int NUM_RESORT_QUEUES = 10;
   private static final Gson gson = new Gson();
   private static final AtomicLong swipesProcessed = new AtomicLong();
   private static final Set<String> processedEvents = ConcurrentHashMap.newKeySet();
@@ -117,7 +117,7 @@ public class RabbitConsumer {
         };
 
     // Each consumer handles a subset of resorts
-    for (int i = 1; i <= NUM_CONSUMERS; i++) {
+    for (int i = 1; i <= NUM_RESORT_QUEUES; i++) {
       // Per-resort ordering: consume each resort's queue so that one resort's swipes are applied in order
       // preserve per-resort order via the per-resort queues
       String queue = "resort." + i;

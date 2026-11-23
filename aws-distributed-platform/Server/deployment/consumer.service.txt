@@ -3,6 +3,9 @@ Description=CS6650 RabbitMQ Consumer
 After=network.target
 
 [Service]
+Environment=CONSUMER_COUNT=10
+Environment=RABBITMQ_PREFETCH=1
+
 User=ec2-user
 WorkingDirectory=/home/ec2-user/consumer
 
