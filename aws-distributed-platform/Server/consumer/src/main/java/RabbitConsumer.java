@@ -91,18 +91,19 @@ public class RabbitConsumer {
 
             payload.put("top", top);
 
-            String leaderboardJson = gson.toJson(payload);
-            String previousLeaderboardJson = previousLeaderboards.get(event.getResortID() + ":" + event.getDayID());
+            String leaderboardState = gson.toJson(top5);
+            String previousLeaderboardState = previousLeaderboards.get(event.getResortID() + ":" + event.getDayID());
 
-            if (!leaderboardJson.equals(previousLeaderboardJson)) { // if JSON updated
+            if (!leaderboardState.equals(previousLeaderboardState)) { // if state updated
               // Publish via leaderboard fanout
               // every WebSocket server binds a queue and pushes to its local subscribers.
+              String leaderboardJson = gson.toJson(payload);
               channel.basicPublish(
                   "leaderboard.fanout",
                   "",
                   null,
                   leaderboardJson.getBytes());
-              previousLeaderboards.put(event.getResortID() + ":" + event.getDayID(), leaderboardJson);
+              previousLeaderboards.put(event.getResortID() + ":" + event.getDayID(), leaderboardState);
             }
             lastPublishTimes.put(event.getResortID() + ":" + event.getDayID(), publishTime);
           }
