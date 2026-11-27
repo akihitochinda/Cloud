@@ -5,6 +5,8 @@ import model.SwipeEvent;
 
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class SwipeGenerator implements Runnable {
 
@@ -13,6 +15,8 @@ public class SwipeGenerator implements Runnable {
   private final int seasonId;
   private final int dayId;
   private final int maxResortId;
+  private final long durationMs;
+  private final AtomicInteger generatedEvents = new AtomicInteger();
 
   public SwipeGenerator(
       BlockingQueue<SwipeEvent> queue,
@@ -20,22 +24,51 @@ public class SwipeGenerator implements Runnable {
       int seasonId,
       int dayId,
       int maxResortId) {
+    this(queue, totalEvents, 0, seasonId, dayId, maxResortId);
+  }
 
+  public SwipeGenerator(
+      BlockingQueue<SwipeEvent> queue,
+      long durationMs,
+      int seasonId,
+      int dayId,
+      int maxResortId) {
+    this(queue, 0, durationMs, seasonId, dayId, maxResortId);
+    if (durationMs < 1) {
+      throw new IllegalArgumentException("durationMs must be at least 1");
+    }
+  }
+
+  private SwipeGenerator(
+      BlockingQueue<SwipeEvent> queue,
+      int totalEvents,
+      long durationMs,
+      int seasonId,
+      int dayId,
+      int maxResortId) {
     this.queue = queue;
     this.totalEvents = totalEvents;
+    this.durationMs = durationMs;
     this.seasonId = seasonId;
     this.dayId = dayId;
     this.maxResortId = maxResortId;
+  }
+
+  public int getGeneratedEvents() {
+    return generatedEvents.get();
   }
 
   @Override
   public void run() {
 
     Random random = new Random();
+    long startNanos = System.nanoTime();
 
     try {
 
-      for (int i = 0; i < totalEvents; i++) {
+      while (durationMs > 0
+          ? (System.nanoTime() - startNanos) / 1_000_000 < durationMs
+          : generatedEvents.get() < totalEvents) {
 
         LiftRide ride =
             new LiftRide(
@@ -50,7 +83,16 @@ public class SwipeGenerator implements Runnable {
                 dayId,
                 ride);
 
-        queue.put(event);
+        if (durationMs > 0) {
+          long elapsedMs = (System.nanoTime() - startNanos) / 1_000_000;
+          long remainingMs = durationMs - elapsedMs;
+          if (remainingMs <= 0 || !queue.offer(event, remainingMs, TimeUnit.MILLISECONDS)) {
+            break;
+          }
+        } else {
+          queue.put(event);
+        }
+        generatedEvents.incrementAndGet();
       }
 
     } catch (InterruptedException e) {

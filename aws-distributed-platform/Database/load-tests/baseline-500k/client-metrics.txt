@@ -1,0 +1,48 @@
+===== MAIN PHASE RESULTS =====
+Success: 500000
+Failed: 0
+Runtime(ms): 162111
+Throughput: 3084.31 req/sec
+Throughput Per Resort
+Resort 1: 307.94 req/sec
+Resort 2: 307.68 req/sec
+Resort 3: 309.53 req/sec
+Resort 4: 309.52 req/sec
+Resort 5: 307.59 req/sec
+Resort 6: 307.94 req/sec
+Resort 7: 309.01 req/sec
+Resort 8: 306.89 req/sec
+Resort 9: 311.32 req/sec
+Resort 10: 306.89 req/sec
+
+===== WEBSOCKET =====
+Connections: 10
+Reconnects: 0
+Total Leaderboard Updates: 394
+Leaderboard Updates Per Subscriber:
+Resort 1 Subscriber: 43 messages
+Resort 2 Subscriber: 41 messages
+Resort 3 Subscriber: 40 messages
+Resort 4 Subscriber: 40 messages
+Resort 5 Subscriber: 31 messages
+Resort 6 Subscriber: 41 messages
+Resort 7 Subscriber: 38 messages
+Resort 8 Subscriber: 41 messages
+Resort 9 Subscriber: 32 messages
+Resort 10 Subscriber: 47 messages
+Connection Establishment Time Mean(ms): 3629.80
+
+===== LATENCY STATISTICAL ANALYSIS =====
+Mean Latency(ms): 41.32
+Median Latency(ms): 35
+P95 Latency(ms): 77
+P99 Latency(ms): 134
+Min Latency(ms): 2
+Max Latency(ms): 3075
+Mean Push Latency(ms): 559.52
+Median Push Latency(ms): 565
+P95 Push Latency(ms): 768
+P99 Push Latency(ms): 1215
+
+===== SERVER METRICS =====
+{"resortDays":[{"resortId":"1","dayId":"1","vertical":875,"runs":3},{"resortId":"10","dayId":"1","vertical":685,"runs":3},{"resortId":"2","dayId":"1","vertical":1031,"runs":5},{"resortId":"3","dayId":"1","vertical":446,"runs":2},{"resortId":"5","dayId":"1","vertical":413,"runs":3},{"resortId":"6","dayId":"1","vertical":1248,"runs":4},{"resortId":"7","dayId":"1","vertical":374,"runs":1},{"resortId":"8","dayId":"1","vertical":1172,"runs":6},{"resortId":"9","dayId":"1","vertical":307,"runs":2}],"skierId":"65061","favoriteLift":"10","totalRuns":29,"totalVertical":6551}

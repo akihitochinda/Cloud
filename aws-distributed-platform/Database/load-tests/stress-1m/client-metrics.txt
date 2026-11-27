@@ -1,0 +1,45 @@
+===== MAIN PHASE RESULTS =====
+Success: 1000000
+Failed: 0
+Runtime(ms): 279434
+Throughput: 3578.66 req/sec
+Throughput Per Resort
+Resort 1: 359.40 req/sec
+Resort 2: 357.63 req/sec
+Resort 3: 355.60 req/sec
+Resort 4: 356.89 req/sec
+Resort 5: 359.97 req/sec
+Resort 6: 357.21 req/sec
+Resort 7: 356.22 req/sec
+Resort 8: 356.47 req/sec
+Resort 9: 359.80 req/sec
+Resort 10: 359.47 req/sec
+
+===== WEBSOCKET =====
+Connections: 10
+Reconnects: 0
+Total Leaderboard Updates: 396
+Leaderboard Updates Per Subscriber:
+Resort 1 Subscriber: 38 messages
+Resort 2 Subscriber: 38 messages
+Resort 3 Subscriber: 40 messages
+Resort 4 Subscriber: 44 messages
+Resort 5 Subscriber: 39 messages
+Resort 6 Subscriber: 41 messages
+Resort 7 Subscriber: 39 messages
+Resort 8 Subscriber: 34 messages
+Resort 9 Subscriber: 42 messages
+Resort 10 Subscriber: 41 messages
+Connection Establishment Time Mean(ms): 4248.80
+
+===== LATENCY STATISTICAL ANALYSIS =====
+Mean Latency(ms): 35.73
+Median Latency(ms): 31
+P95 Latency(ms): 64
+P99 Latency(ms): 97
+Min Latency(ms): 0
+Max Latency(ms): 3296
+Mean Push Latency(ms): 675.06
+Median Push Latency(ms): 716
+P95 Push Latency(ms): 851
+P99 Push Latency(ms): 870

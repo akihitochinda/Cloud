@@ -5,6 +5,8 @@ After=network.target
 [Service]
 Environment=CONSUMER_COUNT=10
 Environment=RABBITMQ_PREFETCH=1
+Environment=TEST_MODE=COUNT
+Environment=TEST_DURATION_MS=1800000
 
 User=ec2-user
 WorkingDirectory=/home/ec2-user/consumer

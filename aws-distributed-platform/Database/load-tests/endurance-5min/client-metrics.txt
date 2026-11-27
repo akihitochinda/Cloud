@@ -1,0 +1,47 @@
+== DURATION TEST RESULTS =====
+Generation duration(ms): 300000
+Generated: 669020
+Success: 669020
+Failed: 0
+Runtime including queue drain(ms): 352320
+Throughput: 1898.90 req/sec
+Throughput Per Resort
+Resort 1: 189.71 req/sec
+Resort 2: 189.10 req/sec
+Resort 3: 190.31 req/sec
+Resort 4: 191.09 req/sec
+Resort 5: 190.01 req/sec
+Resort 6: 188.92 req/sec
+Resort 7: 190.26 req/sec
+Resort 8: 190.26 req/sec
+Resort 9: 189.38 req/sec
+Resort 10: 189.86 req/sec
+
+===== WEBSOCKET =====
+Connections: 10
+Reconnects: 0
+Total Leaderboard Updates: 421
+Leaderboard Updates Per Subscriber:
+Resort 1 Subscriber: 35 messages
+Resort 2 Subscriber: 42 messages
+Resort 3 Subscriber: 46 messages
+Resort 4 Subscriber: 35 messages
+Resort 5 Subscriber: 45 messages
+Resort 6 Subscriber: 45 messages
+Resort 7 Subscriber: 40 messages
+Resort 8 Subscriber: 47 messages
+Resort 9 Subscriber: 41 messages
+Resort 10 Subscriber: 45 messages
+Connection Establishment Time Mean(ms): 3935.30
+
+===== LATENCY STATISTICAL ANALYSIS =====
+Mean Latency(ms): 67.34
+Median Latency(ms): 63
+P95 Latency(ms): 105
+P99 Latency(ms): 158
+Min Latency(ms): 0
+Max Latency(ms): 7734
+Mean Push Latency(ms): 736.57
+Median Push Latency(ms): 764
+P95 Push Latency(ms): 920
+P99 Push Latency(ms): 1119

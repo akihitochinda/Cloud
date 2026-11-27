@@ -1,4 +1,7 @@
 import generator.SwipeGenerator;
+import java.net.URI;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 import metrics.MetricsCollector;
@@ -12,13 +15,14 @@ import websocket.SubscriberRunner;
 
 public class Main {
 
-  private static final int TOTAL_SWIPES = 500000;
+  private static final int TOTAL_SWIPES = 1000000;
   private static final int WARMUP_THREADS = 32;
   private static final int WARMUP_REQUESTS_PER_THREAD = 1000;
   private static final int MAIN_THREADS = 200;
   private static final int SEASON_ID = 2026;
   private static final int DAY_ID = 1;
   private static final int MAX_RESORT_ID = 10;
+  // private static final int SKIER_ID = 100;
 
   public static void main(String[] args) throws Exception {
 
@@ -141,7 +145,15 @@ public class Main {
       System.out.println("P95 Push Latency(ms): " + StatsUtil.percentile(pushLatencyData, 0.95));
       System.out.println("P99 Push Latency(ms): " + StatsUtil.percentile(pushLatencyData, 0.99));
     }
-
+/*
+    // Metrics API
+    System.out.println();
+    System.out.println("===== SERVER METRICS =====");
+    HttpRequest metricsRequest = HttpRequest.newBuilder().uri(
+        URI.create(baseUrl + "/skiers/" + SKIER_ID + "/stats")).GET().build();
+    HttpResponse<String> metricsResponse = client.send(metricsRequest, HttpResponse.BodyHandlers.ofString());
+    System.out.println(metricsResponse.body());
+*/
     System.exit(0);
   }
 }
